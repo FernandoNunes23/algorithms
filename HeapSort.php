@@ -1,7 +1,7 @@
 <?php
 
 
-class MaxHeap
+class HeapSort
 {
     private $heap;
     private $size;
@@ -26,24 +26,63 @@ class MaxHeap
         return $this->heap[0];
     }
 
+    // Remove item with max key
     public function remove()
     {
-
+        $root = $this->heap[0];
+        // put last element into root
+        $this->heap[0] = $this->heap[--$this->size];
+        $this->bubbleDown(0);
+        return $root;
     }
 
-    public function add()
+    private function bubbleDown(int $index)
     {
+        $largerChild = null;
+        $root = $this->heap[$index];
 
+        while ($index <= $this->getMidIndex()) {
+            $largerChild = $this->getLeftChildIndex($index);
+
+            if ($this->hasRightChild($index) && $this->getRightChild($index) > $this->getLeftChild($index)) {
+                $largerChild = $this->getRightChildIndex($index);
+            }
+
+            if ($root >= $this->heap[$largerChild]) {
+                break;
+            }
+
+            $this->swap($index, $largerChild);
+            $index = $largerChild;
+        }
     }
 
-    private function heapifyDown()
+    public function heapSort()
     {
+        for ($j = ($this->getMidIndex()) - 1; $j >= 0; $j--)
+        {
+            $this->bubbleDown($j);
+        }
 
+        // sort the heap
+        for ($j = ($this->size - 1); $j >= 0; $j--) {
+            $biggestValue = $this->remove();
+            //var_dump($biggestValue);
+            // use same nodes array for sorted elements
+            $this->heap[$j] = $biggestValue;
+        }
+
+        return $this->heap;
     }
 
-    private function heapifyUp()
+    /**
+     * Return the middle index of the heap
+     *
+     * @return float
+     */
+    private function getMidIndex()
     {
-
+        return floor($this->size / 2);
     }
 
     private function swap(int $indexOne, int $indexTwo)

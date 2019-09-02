@@ -1,5 +1,11 @@
 <?php
 
-$array = [20,80,32,12,1,3,45,12,31,3];
+require_once("HeapSort.php");
 
-$maxHeap = new MaxHeap($array);
+$array = [20,80,32,12,1,35,45,121,3];
+
+$heapSort = new HeapSort($array);
+
+foreach ($heapSort->heapSort() as $k => $a) {
+    print("Value: " . $a . " ||  ");
+}
