@@ -41,7 +41,7 @@ class HeapSort
         $largerChild = null;
         $root = $this->heap[$index];
 
-        while ($index <= $this->getMidIndex()) {
+        while ($index < $this->getMidIndex()) {
             $largerChild = $this->getLeftChildIndex($index);
 
             if ($this->hasRightChild($index) && $this->getRightChild($index) > $this->getLeftChild($index)) {
@@ -55,17 +55,21 @@ class HeapSort
             $this->swap($index, $largerChild);
             $index = $largerChild;
         }
+
+        $this->heap[$index] = $root;
     }
 
     public function heapSort()
     {
+        $size = $this->size;
+
         for ($j = ($this->getMidIndex()) - 1; $j >= 0; $j--)
         {
             $this->bubbleDown($j);
         }
 
         // sort the heap
-        for ($j = ($this->size - 1); $j >= 0; $j--) {
+        for ($j = ($size - 1); $j >= 0; $j--) {
             $biggestValue = $this->remove();
             //var_dump($biggestValue);
             // use same nodes array for sorted elements
