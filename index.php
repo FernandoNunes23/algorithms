@@ -1,4 +1,9 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 //Sorting
 require_once("HeapSort.php");
 require_once("QuickSort.php");
@@ -12,17 +17,21 @@ require_once("BinarySearch.php");
 //Recursion
 require_once("Backtracking.php");
 
+$backTracking = new Backtracking();
+
 $sudoku = [
-    [1,0,0,3,2,9,7,0,0],
-    [0,3,0,0,0,0,0,0,0],
-    [0,0,0,2,0,0,0,5,0],
-    [0,0,1,0,9,0,0,0,0],
-    [0,0,0,5,0,0,0,0,3],
-    [4,0,0,0,0,0,0,0,0],
-    [0,2,0,0,1,0,0,0,0],
-    [0,0,0,0,0,0,1,0,0],
-    [0,1,0,8,0,0,0,0,7]
+    [5,3,0,0,7,0,0,0,0],
+    [6,0,0,1,9,5,0,0,0],
+    [0,9,8,0,0,0,0,6,0],
+    [8,0,0,0,6,0,0,0,3],
+    [4,0,0,8,0,3,0,0,1],
+    [7,0,0,0,2,0,0,0,6],
+    [0,6,0,0,0,0,2,8,0],
+    [0,0,0,4,1,9,0,0,5],
+    [0,0,0,0,8,0,0,7,9]
 ];
+
+var_dump($backTracking->solveSudoku($sudoku));exit;
 
 function convert($size)
 {
