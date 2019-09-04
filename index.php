@@ -1,16 +1,48 @@
 <?php
-
+//Sorting
 require_once("HeapSort.php");
 require_once("QuickSort.php");
+require_once("CountingSort.php");
+require_once("MergeSort.php");
+require_once("BubbleSort.php");
+
+//Search
 require_once("BinarySearch.php");
+
+//Recursion
+require_once("Backtracking.php");
+
+$sudoku = [
+    [1,0,0,3,2,9,7,0,0],
+    [0,3,0,0,0,0,0,0,0],
+    [0,0,0,2,0,0,0,5,0],
+    [0,0,1,0,9,0,0,0,0],
+    [0,0,0,5,0,0,0,0,3],
+    [4,0,0,0,0,0,0,0,0],
+    [0,2,0,0,1,0,0,0,0],
+    [0,0,0,0,0,0,1,0,0],
+    [0,1,0,8,0,0,0,0,7]
+];
+
+function convert($size)
+{
+    $unit=array('b','kb','mb','gb','tb','pb');
+    return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
+}
 
 $array = [];
 
+$n = 1000000;
+
+echo $n . '<br>';
+
 $time_start = microtime(true);
 
-for ($i = 0; $i <= 100000; $i++) {
+for ($i = 0; $i <= $n; $i++) {
     $array[$i] = rand(-100000, 100000);
 }
+
+echo '<br>' . convert(memory_get_usage(true)) . '<br>';
 
 $time_end = microtime(true);
 //dividing with 60 will give the execution time in minutes otherwise seconds
@@ -24,17 +56,21 @@ $time_start = microtime(true);
 
 $orderedArray = $quickSort->sort($array);
 
+echo '<br>' . convert(memory_get_usage(true)) . '<br>';
+
 $time_end = microtime(true);
 //dividing with 60 will give the execution time in minutes otherwise seconds
 $execution_time = ($time_end - $time_start);
 //execution time of the script
 echo '<br><b>Total Execution Time Quick Sorting:</b> <br>'.number_format((float) $execution_time, 10).' secs';
 
-$sort = new HeapSort($array);
+//$sort = new HeapSort($array);
 
 $time_start = microtime(true);
 
-$orderedArray = $sort->heapSort();
+//$orderedArray = $sort->heapSort();
+
+echo '<br>' . convert(memory_get_usage(true)) . '<br>';
 
 $time_end = microtime(true);
 //dividing with 60 will give the execution time in minutes otherwise seconds
@@ -54,5 +90,5 @@ $execution_time = ($time_end - $time_start);
 //execution time of the script
 echo '<br><b>Total Execution Time Binary Search:</b> <br>'.number_format((float) $execution_time, 10).' secs <br>';
 
-
+echo '<br> Memory peak: ' . convert(memory_get_peak_usage(true)) . '<br>';
 print('Result: ' . $result);
