@@ -31,7 +31,27 @@ $sudoku = [
     [0,0,0,0,8,0,0,7,9]
 ];
 
-var_dump($backTracking->solveSudoku($sudoku));exit;
+foreach ($sudoku as $row) {
+    foreach ($row as $colValue) {
+        echo $colValue;
+    }
+
+    echo '<br>';
+}
+
+echo '<br>';
+
+$solvedSudoku = $backTracking->solveSudoku($sudoku);
+
+foreach ($solvedSudoku as $row) {
+    foreach ($row as $colValue) {
+        echo $colValue;
+    }
+
+    echo '<br>';
+}
+
+exit;
 
 function convert($size)
 {
