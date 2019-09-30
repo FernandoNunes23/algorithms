@@ -3,6 +3,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+ini_set('memory_limit', '2.5G');
 
 //Sorting
 require_once("HeapSort.php");
@@ -17,7 +18,22 @@ require_once("BinarySearch.php");
 //Recursion
 require_once("Backtracking.php");
 
-$backTracking = new Backtracking();
+//Tree
+require_once("Trees/Node.php");
+
+$tree = new Node(100);
+$tree->insert(10);
+$tree->insert(7);
+$tree->insert(32);
+$tree->insert(43);
+$tree->insert(54);
+$tree->insert(3);
+$tree->insert(83);
+$tree->insert(81);
+
+$tree->printInOrder();
+
+/**$backTracking = new Backtracking();
 
 $sudoku = [
     [5,3,0,0,7,0,0,0,0],
@@ -51,8 +67,8 @@ foreach ($solvedSudoku as $row) {
     echo '<br>';
 }
 
-exit;
-
+exit; **/
+/**
 function convert($size)
 {
     $unit=array('b','kb','mb','gb','tb','pb');
@@ -61,7 +77,8 @@ function convert($size)
 
 $array = [];
 
-$n = 1000000;
+$n = 1000000solução windows entao
+;
 
 echo $n . '<br>';
 
@@ -79,6 +96,16 @@ $execution_time = ($time_end - $time_start);
 //execution time of the script
 echo '<b>Total Execution Time Populating Array:</b> <br>'.number_format((float) $execution_time, 10).' secs';
 
+$time_start = microtime(true);
+
+$result = array_search(3, $array);
+
+$time_end = microtime(true);
+//dividing with 60 will give the execution time in minutes otherwise seconds
+$execution_time = ($time_end - $time_start);
+//execution time of the script
+echo '<br><b>Total Execution Time Linear Search:</b> <br>'.number_format((float) $execution_time, 10).' secs <br>';
+
 $quickSort = new QuickSort();
 
 $time_start = microtime(true);
@@ -93,11 +120,11 @@ $execution_time = ($time_end - $time_start);
 //execution time of the script
 echo '<br><b>Total Execution Time Quick Sorting:</b> <br>'.number_format((float) $execution_time, 10).' secs';
 
-//$sort = new HeapSort($array);
+$sort = new HeapSort($array);
 
 $time_start = microtime(true);
 
-//$orderedArray = $sort->heapSort();
+$orderedArray = $sort->heapSort();
 
 echo '<br>' . convert(memory_get_usage(true)) . '<br>';
 
@@ -120,4 +147,4 @@ $execution_time = ($time_end - $time_start);
 echo '<br><b>Total Execution Time Binary Search:</b> <br>'.number_format((float) $execution_time, 10).' secs <br>';
 
 echo '<br> Memory peak: ' . convert(memory_get_peak_usage(true)) . '<br>';
-print('Result: ' . $result);
+print('Result: ' . $result);**/
